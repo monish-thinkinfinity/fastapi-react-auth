@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In - SaaS Core</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"tertiary-fixed-dim": "#ffb3af", "secondary-container": "#00bd85", "secondary-fixed-dim": "#45dfa4", "on-primary-fixed-variant": "#005236", "on-tertiary-fixed-variant": "#842225", "surface-bright": "#393939", "on-surface": "#e5e2e1", "outline-variant": "#3c4a42", "on-secondary-fixed-variant": "#005137", "on-primary-fixed": "#002113", "surface-container-lowest": "#0e0e0e", primary: "#4edea3", "surface-container-highest": "#353534", "surface-tint": "#4edea3", "primary-fixed": "#6ffbbe", "inverse-on-surface": "#313030", "secondary-fixed": "#68fcbf", "on-surface-variant": "#bbcabf", error: "#ffb4ab", "surface-container-low": "#1c1b1b", "on-secondary": "#003825", "tertiary-fixed": "#ffdad7", "on-tertiary": "#650911", "surface-dim": "#131313", "on-tertiary-container": "#711419", tertiary: "#ffb3af", "on-secondary-fixed": "#002114", "on-error-container": "#ffdad6", outline: "#86948a", "on-background": "#e5e2e1", "inverse-primary": "#006c49", "inverse-surface": "#e5e2e1", surface: "#131313", "tertiary-container": "#fc7c78", "surface-container": "#201f1f", "error-container": "#93000a", background: "#131313", "on-primary": "#003824", "primary-fixed-dim": "#4edea3", "on-error": "#690005", "surface-container-high": "#2a2a2a", "on-secondary-container": "#00452e", secondary: "#45dfa4", "surface-variant": "#353534", "on-primary-container": "#00422b", "on-tertiary-fixed": "#410005", "primary-container": "#10b981"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {"stack-sm": "8px", "stack-md": "16px", unit: "8px", "stack-lg": "32px", gutter: "24px", "container-max": "1200px", "margin-mobile": "20px", "auth-card-width": "440px"}, fontFamily: {"headline-lg": ["Epilogue"], "body-lg": ["Geist"], "headline-xl": ["Epilogue"], "label-md": ["Geist"], "label-sm": ["Geist"], "headline-lg-mobile": ["Epilogue"], "headline-md": ["Epilogue"], "body-md": ["Geist"], headline: ["Epilogue"], display: ["Epilogue"], body: ["Geist"], label: ["Geist"]}, fontSize: {"headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-xl": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700"}], "label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500"}], "label-sm": ["12px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "headline-lg-mobile": ["28px", {lineHeight: "36px", fontWeight: "600"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}]}}}};</script>
+<style>
+    .glass-card {
+      background: rgba(32, 31, 31, 0.4);
+      backdrop-filter: blur(40px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0px 20px 50px rgba(0,0,0,0.5);
+    }
+    
+    .inner-glow {
+      position: absolute;
+      inset: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .floating-label-input:focus-within label,
+    .floating-label-input input:not(:placeholder-shown) + label {
+      transform: translateY(-24px) scale(0.85);
+      background-color: #131313;
+      padding: 0 4px;
+      color: #10B981;
+    }
+
+    .input-glow:focus {
+      outline: none;
+      border-color: #10B981;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md">
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-margin-mobile md:px-gutter py-4 max-w-container-max mx-auto bg-transparent">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="security">security</span>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">SaaS Core</h1>
+</div>
+</header>
+<main class="flex min-h-screen">
+<!-- Left Side: Visual Anchor -->
+<section class="hidden lg:flex lg:w-1/2 relative overflow-hidden items-end p-gutter">
+<div class="absolute inset-0 z-0">
+<img alt="" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhDbsUtBg7Oj6kGIx3hguvgqZPiGVcL9p_mazDzbGNlrv_DB0NSYjhovLl4hT5V9sSQlNf-XAOqCmzBfwiuR-xOsBohedLyf9lVbYGkR-pjqpJj3pyGivLpKkTOG39k6z89sLtw2boQaA0MvXylP2JJ0lzwZZvYVy5_iKCF9BIs8NAmX_zMHyXBdcjg4ojIt2fuMME8y-O7VGaqjNR022gw1xnUh7M6R0SXLdnjN12PdYSmIFd0-RKa3BNS"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-lg mb-stack-lg">
+<h2 class="font-headline-xl text-headline-xl text-on-primary-fixed mb-stack-sm">Precision in every packet.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant opacity-80">Experience the next generation of secure cloud infrastructure management built for the modern enterprise.</p>
+</div>
+</section>
+<!-- Right Side: Authentication Canvas -->
+<section class="w-full lg:w-1/2 flex items-center justify-center p-margin-mobile md:p-gutter">
+<div class="w-full max-w-[440px] glass-card p-stack-lg rounded-xl relative">
+<div class="inner-glow"></div>
+<div class="mb-stack-lg text-center">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Welcome Back</h2>
+<p class="font-body-md text-on-surface-variant">Access your dashboard and security controls.</p>
+</div>
+<form class="space-y-stack-md">
+<!-- Email Input -->
+<div class="relative floating-label-input mt-stack-md">
+<input class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface input-glow transition-all duration-200" id="email" name="email" placeholder=" " type="email"/>
+<label class="absolute left-4 top-3 text-on-surface-variant transition-all duration-200 pointer-events-none font-label-md text-label-md" for="email">Email Address</label>
+</div>
+<!-- Password Input -->
+<div class="relative floating-label-input mt-stack-md">
+<input class="w-full bg-transparent border border-outline-variant rounded-lg px-4 py-3 text-on-surface input-glow transition-all duration-200" id="password" name="password" placeholder=" " type="password"/>
+<label class="absolute left-4 top-3 text-on-surface-variant transition-all duration-200 pointer-events-none font-label-md text-label-md" for="password">Password</label>
+</div>
+<div class="flex items-center justify-between py-2">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 rounded border-outline-variant bg-transparent text-primary focus:ring-primary focus:ring-offset-background" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Remember me</span>
+</label>
+<a class="font-label-sm text-label-sm text-primary hover:text-secondary transition-colors" href="#">Forgot password?</a>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-4 rounded-lg font-bold hover:bg-secondary-container transition-all active:scale-95 duration-200" type="submit">
+            Sign In
+          </button>
+</form>
+<div class="relative my-stack-lg">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline-variant opacity-30"></div></div>
+<div class="relative flex justify-center text-label-sm uppercase tracking-widest"><span class="bg-[#1a1a1a] px-2 text-on-surface-variant">Or continue with</span></div>
+</div>
+<div class="grid grid-cols-2 gap-stack-md">
+<button class="flex items-center justify-center gap-2 py-3 bg-white/5 border border-outline-variant rounded-lg hover:bg-white/10 transition-colors">
+<img alt="Google" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdEVzAB-wnu0-0EAMLNLdJxDqfz-xVNG_en1Pb0sGQTzFrRj7Pc4187E26QrCFldCU5soIUloh8V0OBQFEu_e2pdWIn43mX2yRJIr8L31-4VPw-ah-L-dYtL2UFc7fn4zmoCKhEWOrrEwsqqEt_wNjwkfYeT7mYmjghkBCjEMkuqP9p51G6hA97uILZcU365aoZaz4wUKBxrgOuz0v8wEDzp7jDTjeC0ZxHpTGZ6ExE_QUWx5IXTJCMSCnnvWOZFzuXoT_jCbiWzGe"/>
+<span class="font-label-md text-label-md text-on-surface">Google</span>
+</button>
+<button class="flex items-center justify-center gap-2 py-3 bg-white/5 border border-outline-variant rounded-lg hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface" data-icon="terminal">terminal</span>
+<span class="font-label-md text-label-md text-on-surface">GitHub</span>
+</button>
+</div>
+<p class="mt-stack-lg text-center font-body-md text-on-surface-variant">
+          New to SaaS Core? 
+          <a class="text-primary font-bold hover:underline" href="#">Create an account</a>
+</p>
+</div>
+</section>
+</main>
+<footer class="w-full py-8 flex flex-col md:flex-row items-center justify-between px-margin-mobile md:px-gutter gap-4 opacity-60 fixed bottom-0 left-0 bg-transparent pointer-events-none">
+<span class="font-label-sm text-label-sm text-on-surface-variant pointer-events-auto">© 2024 SaaS Core Inc. All rights reserved.</span>
+<div class="flex gap-stack-md pointer-events-auto">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Help Center</a>
+</div>
+</footer>
+</body></html>
