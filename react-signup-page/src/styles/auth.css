@@ -366,6 +366,8 @@
 }
 
 .terms-label input {
+  width: 16px;
+  height: 16px;
   margin-top: 4px;
   color: var(--on-surface-variant);
 }
