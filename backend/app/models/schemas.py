@@ -5,7 +5,7 @@ from pydantic import BaseModel, EmailStr, Field, field_validator
 
 
 class SignUpRequest(BaseModel):
-    full_name: str = Field(..., min_length=2, max_length=100, examples=["Jane Doe"])
+    full_name: str = Field(..., min_length=5, max_length=100, examples=["Jane Doe"])
     email: EmailStr = Field(..., examples=["jane@example.com"])
     password: str = Field(..., min_length=8, max_length=128, examples=["Str0ng!Pass"])
 
