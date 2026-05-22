@@ -66,6 +66,7 @@ class TokenResponse(BaseModel):
 class MessageResponse(BaseModel):
     message: str
 
+
 class ResetPasswordRequest(BaseModel):
     email: EmailStr
     new_password: str

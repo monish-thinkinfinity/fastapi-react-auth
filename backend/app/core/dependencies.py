@@ -11,14 +11,11 @@ from jose import JWTError
 from app.core.security import decode_token
 from app.db.database import get_database
 
-
 bearer_scheme = HTTPBearer()
 
 
 async def get_current_user(
-    credentials: HTTPAuthorizationCredentials = Depends(
-        bearer_scheme
-    ),
+    credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme),
     db=Depends(get_database),
 ) -> dict:
 
@@ -42,9 +39,7 @@ async def get_current_user(
     except (JWTError, Exception):
         raise credentials_exception
 
-    user = await db["users"].find_one(
-        {"_id": object_id}
-    )
+    user = await db["users"].find_one({"_id": object_id})
 
     if user is None:
         raise credentials_exception

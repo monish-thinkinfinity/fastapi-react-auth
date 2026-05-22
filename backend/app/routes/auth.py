@@ -28,7 +28,9 @@ from app.models.schemas import (
     ResetPasswordRequest,
 )
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
 
 settings = get_settings()
@@ -45,7 +47,7 @@ async def signup(
     body: SignUpRequest,
     db: AsyncIOMotorDatabase = Depends(get_database),
 ) -> TokenResponse:
-    
+
     now = datetime.now(timezone.utc)
 
     user_doc = {
@@ -97,21 +99,15 @@ async def signin(
     )
 
     if user is None:
-        logger.warning(
-            f"Failed login attempt: {body.email}"
-        )
+        logger.warning(f"Failed login attempt: {body.email}")
         raise invalid_credentials
 
     if not verify_password(body.password, user["hashed_password"]):
-        logger.warning(
-            f"Failed login attempt: {body.email}"
-        )
+        logger.warning(f"Failed login attempt: {body.email}")
         raise invalid_credentials
 
     if not user.get("is_active", True):
-        logger.warning(
-            f"Failed login attempt: {body.email}"
-        )
+        logger.warning(f"Failed login attempt: {body.email}")
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="This account has been deactivated.",
@@ -119,9 +115,7 @@ async def signin(
 
     user_id = str(user["_id"])
 
-    logger.info(
-        f"User signed in: {body.email}"
-    )
+    logger.info(f"User signed in: {body.email}")
 
     return TokenResponse(
         access_token=create_access_token(user_id),
@@ -196,8 +190,6 @@ async def signout(
     )
 
 
-
-
 @router.post(
     "/reset-password",
     response_model=MessageResponse,
@@ -207,9 +199,7 @@ async def reset_password(
     body: ResetPasswordRequest,
     db: AsyncIOMotorDatabase = Depends(get_database),
 ):
-    user = await db["users"].find_one(
-        {"email": body.email.lower()}
-    )
+    user = await db["users"].find_one({"email": body.email.lower()})
 
     if user is None:
         raise HTTPException(
@@ -221,18 +211,12 @@ async def reset_password(
         {"_id": user["_id"]},
         {
             "$set": {
-                "hashed_password": hash_password(
-                    body.new_password
-                ),
+                "hashed_password": hash_password(body.new_password),
                 "updated_at": datetime.now(timezone.utc),
             }
         },
     )
 
-    logger.info(
-        f"Password reset successful: {body.email}"
-    )
+    logger.info(f"Password reset successful: {body.email}")
 
-    return MessageResponse(
-        message="Password reset successful"
-    )
+    return MessageResponse(message="Password reset successful")

@@ -35,9 +35,7 @@ async def close_db() -> None:
 
 def get_client() -> AsyncIOMotorClient:
     if _client is None:
-        raise RuntimeError(
-            "Database not initialized. Call connect_db() first."
-        )
+        raise RuntimeError("Database not initialized. Call connect_db() first.")
 
     return _client
 
