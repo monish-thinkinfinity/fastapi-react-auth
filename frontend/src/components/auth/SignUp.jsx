@@ -9,6 +9,8 @@ import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 import LeftPanel from '../layout/LeftPanel';
 
+import { signUp } from '../../services/api';
+
 import { BG_IMAGE, GOOGLE_ICON } from '../../data/constants';
 
 export default function SignUp({ onSwitch }) {
@@ -19,6 +21,40 @@ export default function SignUp({ onSwitch }) {
   const [password, setPassword] = useState('');
 
   const [agreed, setAgreed] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+
+  const [error, setError] = useState('');
+
+  const onSuccess = () => {
+    alert('Account Created Successfully');
+  };
+
+  const handleSubmit = async () => {
+    if (!agreed) return setError('Please agree to the terms to continue');
+
+    // Password validation
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!passwordRegex.test(password)) {
+      return setError(
+        'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.',
+      );
+    }
+
+    setLoading(true);
+    setError('');
+
+    try {
+      await signUp(name, email, password);
+      onSuccess();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="saas-root">
@@ -77,6 +113,18 @@ export default function SignUp({ onSwitch }) {
                 <PasswordStrength password={password} />
               </div>
 
+              {/* ERROR MESSAGE */}
+              {error && (
+                <p
+                  style={{
+                    color: '#ff6b6b',
+                    fontSize: '14px',
+                  }}
+                >
+                  {error}
+                </p>
+              )}
+
               <label className="terms-label">
                 <input
                   type="checkbox"
@@ -90,7 +138,13 @@ export default function SignUp({ onSwitch }) {
                 </span>
               </label>
 
-              <button className="btn-primary">Create Account</button>
+              <button
+                className="btn-primary"
+                onClick={handleSubmit}
+                disabled={loading}
+              >
+                {loading ? 'Creating Account...' : 'Create Account'}
+              </button>
             </div>
 
             <p className="card-footer-text">
@@ -99,6 +153,7 @@ export default function SignUp({ onSwitch }) {
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
+
                   onSwitch('signin');
                 }}
               >

@@ -1,0 +1,12 @@
+{
+  "pythonVersion": "3.12",
+  "typeCheckingMode": "basic",
+  "plugins": [],
+  "reportMissingModuleSource": "none",
+  "venvPath": ".",
+  "executionEnvironments": [
+    {
+      "root": "."
+    }
+  ]
+}
