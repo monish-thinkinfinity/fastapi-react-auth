@@ -1,6 +1,6 @@
 {
   "pythonVersion": "3.12",
-  "typeCheckingMode": "basic",
+  "typeCheckingMode": "strict",
   "plugins": [],
   "reportMissingModuleSource": "none",
   "venvPath": ".",
